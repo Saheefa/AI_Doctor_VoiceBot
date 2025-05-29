@@ -39,8 +39,8 @@ def record_audio(file_path, timeout=20, phrase_time_limit=None):
     except Exception as e:
         logging.error(f"An error occurred: {e}")
 
-audio_file_path="patient_voice_test_for_patient.mp3"
-record_audio(file_path=audio_file_path)
+audio_filepath="patient_voice_test_for_patient.mp3"
+#record_audio(file_path=audio_filepath)
 
 
 
@@ -52,12 +52,15 @@ GROQ_API_KEY=os.environ.get("GROQ_API_KEY")
 #print(GROQ_API_KEY)
 
 from groq import Groq
-client=Groq(api_key=GROQ_API_KEY)
+
 stt_model="whisper-large-v3"
-audio_file=open(audio_file_path, "rb")
-transcription=client.audio.transcriptions.create(
-    model=stt_model,
-    file=audio_file,
-    language="en"
-)
-print(transcription.text)
+def transcribe_with_groq(stt_model,audio_filepath,GROQ_API_KEY):
+    client=Groq(api_key=GROQ_API_KEY)
+    
+    audio_file=open(audio_filepath, "rb")
+    transcription=client.audio.transcriptions.create(
+        model=stt_model,
+        file=audio_file,
+        language="en"
+    )
+    return transcription.text

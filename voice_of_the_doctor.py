@@ -21,7 +21,7 @@ from elevenlabs.client import ElevenLabs
 from dotenv import load_dotenv
 load_dotenv()
 ELEVENLABS_API_KEY=os.environ.get("ELEVENLABS_API_KEY")
-print(ELEVENLABS_API_KEY)
+#print(ELEVENLABS_API_KEY)
 
 def text_to_speech_with_elevenlabs_old(input_text, output_filepath):
     client=ElevenLabs(api_key=ELEVENLABS_API_KEY)
@@ -65,7 +65,7 @@ def text_to_speech_with_gtts(input_text, output_filepath):
     except Exception as e:
         print(f"An error occurred while trying to play the audio: {e}")
 input_text="Hi this is AI with Sahifa, autoplay testing!"    
-text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")    
+#text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")    
 
 
 def text_to_speech_with_elevenlabs(input_text, output_filepath):
